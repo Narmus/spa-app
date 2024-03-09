@@ -18,7 +18,7 @@ const PolicyFormPage = () => {
         <JsonForms
           schema={sampleSchema}
           uischema={sampleUISchema}
-          data={data}
+          data={sampleData}
           renderers={materialRenderers}
           cells={materialCells}
           onChange={(data: any) => {
