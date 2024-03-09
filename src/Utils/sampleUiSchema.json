@@ -2,75 +2,157 @@
   "type": "VerticalLayout",
   "elements": [
     {
-      "type": "Control",
+      "type": "Group",
       "label": "Policy Number",
-      "scope": "#/properties/policyNumber"
+      "elements": [
+        {
+          "type": "Control",
+          "label": "Policy Number",
+          "scope": "#/properties/policyNumber"
+        },
+        {
+          "type": "HorizontalLayout",
+          "label": "Policy Holder Information",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/effectiveDate"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/expirationDate"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Policy Premiums",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/premiums"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Policy Endorsements",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/endorsements"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Policy Limits",
+      "elements": [
+        {
+          "type": "HorizontalLayout",
+          "label": "Policy Holder Information",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/policyLimits/properties/bodilyInjuryPerPerson"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyLimits/properties/bodilyInjuryPerAccident"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyLimits/properties/propertyDamagePerAccident"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyLimits/properties/combinedSingleLimit"
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "Group",
       "label": "Policy Holder Information",
       "elements": [
         {
-          "type": "Control",
-          "scope": "#/properties/policyHolder/properties/name"
+          "type": "HorizontalLayout",
+          "label": "Policy Holder Information",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/name"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/contact/properties/phone"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/contact/properties/email"
+            }
+          ]
         },
         {
-          "type": "Control",
-          "scope": "#/properties/policyHolder/properties/contact/properties/phone"
+          "type": "VerticalLayout",
+          "label": "Policy Holder Information",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/address/properties/street"
+            }
+          ]
         },
         {
-          "type": "Control",
-          "scope": "#/properties/policyHolder/properties/contact/properties/email"
+          "type": "HorizontalLayout",
+          "label": "Policy Holder Information",
+          "elements": [
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/address/properties/city"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/address/properties/state"
+            },
+            {
+              "type": "Control",
+              "scope": "#/properties/policyHolder/properties/address/properties/zipCode"
+            }
+          ]
         }
       ]
     },
     {
       "type": "Group",
-      "label": "Vehicles",
       "elements": [
         {
-          "type": "ArrayControl",
-          "scope": "#/properties/vehicles",
-          "options": {
-            "detail": {
-              "type": "VerticalLayout",
-              "elements": [
-                {
-                  "type": "Control",
-                  "scope": "#/properties/make"
-                },
-                {
-                  "type": "Control",
-                  "scope": "#/properties/model"
-                }
-              ]
-            }
-          }
+          "type": "Control",
+          "label": "Car Details",
+          "scope": "#/properties/vehicles/items"
         }
       ]
     },
     {
       "type": "Group",
-      "label": "Drivers",
       "elements": [
         {
-          "type": "ArrayControl",
-          "scope": "#/properties/drivers",
-          "options": {
-            "detail": {
-              "type": "VerticalLayout",
-              "elements": [
-                {
-                  "type": "Control",
-                  "scope": "#/properties/name"
-                },
-                {
-                  "type": "Control",
-                  "scope": "#/properties/licenseNumber"
-                }
-              ]
-            }
-          }
+          "type": "Control",
+          "label": "Driver Details",
+          "scope": "#/properties/drivers"
         }
       ]
     }

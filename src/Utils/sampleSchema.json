@@ -6,6 +6,29 @@
     "policyNumber": {
       "type": "string"
     },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "policyLimits": {
+      "type": "object",
+      "properties": {
+        "bodilyInjuryPerPerson": { "type": "string" },
+        "bodilyInjuryPerAccident": { "type": "string" },
+        "propertyDamagePerAccident": { "type": "string" },
+        "combinedSingleLimit": { "type": "string" }
+      },
+      "required": [
+        "bodilyInjuryPerPerson",
+        "bodilyInjuryPerAccident",
+        "propertyDamagePerAccident",
+        "combinedSingleLimit"
+      ]
+    },
     "policyHolder": {
       "type": "object",
       "properties": {
@@ -33,67 +56,46 @@
       },
       "required": ["name", "address", "contact"]
     },
-    "effectiveDate": {
-      "type": "string",
-      "format": "date"
-    },
-    "expirationDate": {
-      "type": "string",
-      "format": "date"
-    },
-    "policyLimits": {
-      "type": "object",
-      "properties": {
-        "bodilyInjuryPerPerson": { "type": "string" },
-        "bodilyInjuryPerAccident": { "type": "string" },
-        "propertyDamagePerAccident": { "type": "string" },
-        "combinedSingleLimit": { "type": "string" }
-      },
-      "required": [
-        "bodilyInjuryPerPerson",
-        "bodilyInjuryPerAccident",
-        "propertyDamagePerAccident",
-        "combinedSingleLimit"
-      ]
-    },
     "vehicles": {
       "type": "array",
       "items": {
         "type": "object",
-        "properties": {
-          "vehicleId": { "type": "string" },
-          "make": { "type": "string" },
-          "model": { "type": "string" },
-          "year": { "type": "integer" },
-          "VIN": { "type": "string" },
-          "usage": { "type": "string" },
-          "coverage": {
-            "type": "object",
-            "properties": {
-              "collision": { "type": "boolean" },
-              "comprehensive": { "type": "boolean" },
-              "deductible": {
-                "type": "object",
-                "properties": {
-                  "collision": { "type": "string" },
-                  "comprehensive": { "type": "string" }
-                },
-                "required": ["collision", "comprehensive"]
+        "items": {
+          "type": "object",
+          "properties": {
+            "vehicleId": { "type": "string" },
+            "make": { "type": "string" },
+            "model": { "type": "string" },
+            "year": { "type": "integer" },
+            "VIN": { "type": "string" },
+            "usage": { "type": "string" },
+            "coverage": {
+              "type": "object",
+              "properties": {
+                "collision": { "type": "boolean" },
+                "comprehensive": { "type": "boolean" },
+                "deductible": {
+                  "type": "object",
+                  "properties": {
+                    "collision": { "type": "string" },
+                    "comprehensive": { "type": "string" }
+                  },
+                  "required": ["collision", "comprehensive"]
+                }
               }
-            },
-            "required": ["collision", "comprehensive", "deductible"]
+            }
           }
-        },
-        "required": [
-          "vehicleId",
-          "make",
-          "model",
-          "year",
-          "VIN",
-          "usage",
-          "coverage"
-        ]
-      }
+        }
+      },
+      "required": [
+        "vehicleId",
+        "make",
+        "model",
+        "year",
+        "VIN",
+        "usage",
+        "coverage"
+      ]
     },
     "drivers": {
       "type": "array",
@@ -163,16 +165,5 @@
         "paymentAmount"
       ]
     }
-  },
-  "required": [
-    "policyNumber",
-    "policyHolder",
-    "effectiveDate",
-    "expirationDate",
-    "policyLimits",
-    "vehicles",
-    "drivers",
-    "endorsements",
-    "premiums"
-  ]
+  }
 }
