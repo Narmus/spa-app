@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: rgb(197, 227, 255);
 }
 
 .layout-children {
@@ -7,7 +8,7 @@ body {
 }
 
 .layout-headers {
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(90, 175, 255);
     text-align: center;
     font-size: 3rem;
     font-weight: 700;
@@ -15,7 +16,7 @@ body {
 }
 
 .layout-footers {
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(90, 175, 255);
     text-align: center;
     font-size: 3rem;
     font-weight: 700;
