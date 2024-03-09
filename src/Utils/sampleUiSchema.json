@@ -1,0 +1,78 @@
+{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+      "label": "Policy Number",
+      "scope": "#/properties/policyNumber"
+    },
+    {
+      "type": "Group",
+      "label": "Policy Holder Information",
+      "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/policyHolder/properties/name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/policyHolder/properties/contact/properties/phone"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/policyHolder/properties/contact/properties/email"
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Vehicles",
+      "elements": [
+        {
+          "type": "ArrayControl",
+          "scope": "#/properties/vehicles",
+          "options": {
+            "detail": {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/make"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/model"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Group",
+      "label": "Drivers",
+      "elements": [
+        {
+          "type": "ArrayControl",
+          "scope": "#/properties/drivers",
+          "options": {
+            "detail": {
+              "type": "VerticalLayout",
+              "elements": [
+                {
+                  "type": "Control",
+                  "scope": "#/properties/name"
+                },
+                {
+                  "type": "Control",
+                  "scope": "#/properties/licenseNumber"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
