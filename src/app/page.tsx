@@ -1,5 +1,9 @@
+import PolicyFormPage from "./policyForm/page";
+
 export default function Home() {
-  return <main>
-    Landing Page
-  </main>;
+  return (
+    <main>
+      <PolicyFormPage />
+    </main>
+  );
 }
