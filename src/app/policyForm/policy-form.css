@@ -1,0 +1,24 @@
+.policy-form-container .button-row{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.policy-form-container .button-row button{
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.policy-form-container .button-row button:hover{
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.policy-form-container .button-row .submit{
+    background-color: rgb(90, 175, 255);
+}

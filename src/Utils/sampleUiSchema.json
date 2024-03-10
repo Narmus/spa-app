@@ -7,7 +7,7 @@
       "elements": [
         {
           "type": "Control",
-          "label": "Policy Number",
+          "label": "Policy Number (11 digits)",
           "scope": "#/properties/policyNumber"
         },
         {

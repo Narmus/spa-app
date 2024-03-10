@@ -1,16 +1,42 @@
 "use client";
+import "./policy-form.css";
 import { JsonForms } from "@jsonforms/react";
-import sampleData from "../../Utils/sampleJSON.json";
 import sampleSchema from "../../Utils/sampleSchema.json";
 import sampleUISchema from "../../Utils/sampleUiSchema.json";
 import {
   materialCells,
   materialRenderers,
 } from "@jsonforms/material-renderers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getPolicyById, postnewPolicy } from "@/api/mainAPI";
 
 const PolicyFormPage = () => {
-  const [data, setData] = useState("");
+  const [policyNumber, setPolicyNumber] = useState("");
+  const [fetchedData, setFetchedData] = useState("");
+  const [updatedData, setUpdatedData] = useState("");
+
+  const getPolicyDetailsView = async ({ policyNumber }: any) => {
+    const response: any = await getPolicyById({ policyNumber });
+    if (response?.status === 200) {
+      setFetchedData(response?.response);
+      setUpdatedData(response?.response);
+    }
+  };
+
+  const postnewPolicyView = async ({ data }: any) => {
+    const response: any = await postnewPolicy({ data });
+    console.log("Respo", response);
+  };
+
+  useEffect(() => {
+    const detailSearch = setTimeout(() => {
+      policyNumber?.length === 11 && getPolicyDetailsView({ policyNumber });
+    }, 1000);
+
+    return () => {
+      clearTimeout(detailSearch);
+    };
+  }, [policyNumber]);
 
   return (
     <div className="policy-form-container container">
@@ -18,21 +44,44 @@ const PolicyFormPage = () => {
         <JsonForms
           schema={sampleSchema}
           uischema={sampleUISchema}
-          data={sampleData}
+          data={updatedData}
           renderers={materialRenderers}
           cells={materialCells}
           onChange={(data: any) => {
-            setData(data?.data);
+            setPolicyNumber(data?.data?.policyNumber);
+            setUpdatedData(data?.data);
           }}
         />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(data);
-          }}
-        >
-          Submit
-        </button>
+        <div className="button-row">
+          <button
+            className="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              postnewPolicyView({ data: updatedData });
+            }}
+          >
+            Submit
+          </button>
+          <button
+            className="reset"
+            onClick={(e) => {
+              e.preventDefault();
+              setUpdatedData(fetchedData);
+            }}
+          >
+            Reset
+          </button>
+          <button
+            className="reset"
+            onClick={(e) => {
+              e.preventDefault();
+              setFetchedData("");
+              setUpdatedData("");
+            }}
+          >
+            Clear All
+          </button>
+        </div>
       </form>
     </div>
   );
