@@ -8,7 +8,7 @@ import {
   materialRenderers,
 } from "@jsonforms/material-renderers";
 import { useEffect, useState } from "react";
-import { getPolicyDetails } from "@/api/mainAPI";
+import { getPolicyById, postnewPolicy } from "@/api/mainAPI";
 
 const PolicyFormPage = () => {
   const [policyNumber, setPolicyNumber] = useState("");
@@ -16,14 +16,21 @@ const PolicyFormPage = () => {
   const [updatedData, setUpdatedData] = useState("");
 
   const getPolicyDetailsView = async ({ policyNumber }: any) => {
-    const response: any = await getPolicyDetails({ policyNumber });
-    setFetchedData(response);
-    setUpdatedData(response)
+    const response: any = await getPolicyById({ policyNumber });
+    if (response?.status === 200) {
+      setFetchedData(response?.response);
+      setUpdatedData(response?.response);
+    }
+  };
+
+  const postnewPolicyView = async ({ data }: any) => {
+    const response: any = await postnewPolicy({ data });
+    console.log("Respo", response);
   };
 
   useEffect(() => {
     const detailSearch = setTimeout(() => {
-      getPolicyDetailsView({ policyNumber });
+      policyNumber?.length === 11 && getPolicyDetailsView({ policyNumber });
     }, 1000);
 
     return () => {
@@ -50,7 +57,7 @@ const PolicyFormPage = () => {
             className="submit"
             onClick={(e) => {
               e.preventDefault();
-              console.log(fetchedData);
+              postnewPolicyView({ data: updatedData });
             }}
           >
             Submit
@@ -63,6 +70,16 @@ const PolicyFormPage = () => {
             }}
           >
             Reset
+          </button>
+          <button
+            className="reset"
+            onClick={(e) => {
+              e.preventDefault();
+              setFetchedData("");
+              setUpdatedData("");
+            }}
+          >
+            Clear All
           </button>
         </div>
       </form>

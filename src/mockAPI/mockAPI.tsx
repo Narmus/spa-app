@@ -11,8 +11,11 @@ export const getPolicyByID = ({ policyNumber }: any) => {
   const policySearched = policies?.find((element: any) => {
     return element?.policyNumber === policyNumber;
   });
-
-  return policySearched;
+  if (policySearched) {
+    return policySearched;
+  } else {
+    return null;
+  }
 };
 
 export const postNewPolicy = ({ data }: any) => {

@@ -6,7 +6,11 @@ export const GET = async (req: Request, res: Response) => {
   try {
     const response = getPolicyByID({ policyNumber });
     return NextResponse.json(
-      { message: `Policy ${policyNumber} fetched`, response },
+      {
+        message: `Policy ${policyNumber} fetched`,
+        response,
+        status: response ? 200 : 400,
+      },
       { status: 200 }
     );
   } catch (error) {

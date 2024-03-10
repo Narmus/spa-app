@@ -1,15 +1,34 @@
-import sampleData from "../Utils/sampleJSON.json";
-const getPolicyDetails = async ({ policyNumber }: any) => {
+export const getPolicyById = async ({ policyNumber }: any) => {
   try {
-    const response = await fetch("https://v2.jokeapi.dev/joke/Any");
-    const data = [sampleData]?.filter(
-      (item) => item.policyNumber === policyNumber
-    );
-    const responseData = { ...data?.[0], policyNumber: policyNumber };
-    return responseData;
+    const fetchedResponse: any = await fetch(`../api/policy/${policyNumber}`);
+    const response = await fetchedResponse.json();
+    return response;
   } catch (error) {
-    console.error(error);
+    return error;
   }
 };
 
-export { getPolicyDetails };
+export const postnewPolicy = async ({ data }: any) => {
+  function removeEmptyStringProperties(obj: any) {
+    const newObj: any = {};
+    Object.keys(obj).forEach((key) => {
+      if (obj[key] !== "") {
+        newObj[key] = obj[key];
+      }
+    });
+    return newObj;
+  }
+
+  const sortedWithoutEmptyStrings = removeEmptyStringProperties(data);
+  try {
+    const fetchedResponse: any = await fetch(`../api/policy/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sortedWithoutEmptyStrings),
+    });
+  } catch (error) {
+    return error;
+  }
+};
