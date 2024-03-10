@@ -1,0 +1,41 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 80vh;
+}
+
+.login-container .login-box {
+    font-size: 2rem;
+    font-family: monospace;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.login-container .login-box input {
+    height: 32px;
+    margin-left: 15px;
+    font-size: 2rem;
+}
+
+.login-container .sign-in-button {
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(90, 175, 255);
+    font-size: 1rem;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.login-container .sign-in-button:hover {
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid black;
+}

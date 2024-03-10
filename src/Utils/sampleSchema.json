@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Commercial Auto Policy",
+  "type": "object",
+  "properties": {
+    "policyNumber": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "policyLimits": {
+      "type": "object",
+      "properties": {
+        "bodilyInjuryPerPerson": { "type": "string" },
+        "bodilyInjuryPerAccident": { "type": "string" },
+        "propertyDamagePerAccident": { "type": "string" },
+        "combinedSingleLimit": { "type": "string" }
+      },
+      "required": [
+        "bodilyInjuryPerPerson",
+        "bodilyInjuryPerAccident",
+        "propertyDamagePerAccident",
+        "combinedSingleLimit"
+      ]
+    },
+    "policyHolder": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": { "type": "string" },
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "zipCode": { "type": "string" }
+          },
+          "required": ["street", "city", "state", "zipCode"]
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "phone": { "type": "string" },
+            "email": { "type": "string" }
+          },
+          "required": ["phone", "email"]
+        }
+      },
+      "required": ["name", "address", "contact"]
+    },
+    "vehicles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "vehicleId": { "type": "string" },
+            "make": { "type": "string" },
+            "model": { "type": "string" },
+            "year": { "type": "integer" },
+            "VIN": { "type": "string" },
+            "usage": { "type": "string" },
+            "coverage": {
+              "type": "object",
+              "properties": {
+                "collision": { "type": "boolean" },
+                "comprehensive": { "type": "boolean" },
+                "deductible": {
+                  "type": "object",
+                  "properties": {
+                    "collision": { "type": "string" },
+                    "comprehensive": { "type": "string" }
+                  },
+                  "required": ["collision", "comprehensive"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "vehicleId",
+        "make",
+        "model",
+        "year",
+        "VIN",
+        "usage",
+        "coverage"
+      ]
+    },
+    "drivers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "driverId": { "type": "string" },
+          "name": { "type": "string" },
+          "licenseNumber": { "type": "string" },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateOfHire": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "driverId",
+          "name",
+          "licenseNumber",
+          "dateOfBirth",
+          "dateOfHire"
+        ]
+      }
+    },
+    "endorsements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "endorsementId": { "type": "string" },
+          "description": { "type": "string" },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "endorsementId",
+          "description",
+          "effectiveDate",
+          "expirationDate"
+        ]
+      }
+    },
+    "premiums": {
+      "type": "object",
+      "properties": {
+        "annualPremium": { "type": "string" },
+        "paymentPlan": { "type": "string" },
+        "nextPaymentDue": {
+          "type": "string",
+          "format": "date"
+        },
+        "paymentAmount": { "type": "string" }
+      },
+      "required": [
+        "annualPremium",
+        "paymentPlan",
+        "nextPaymentDue",
+        "paymentAmount"
+      ]
+    }
+  }
+}
