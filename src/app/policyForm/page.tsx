@@ -10,7 +10,22 @@ import {
 import { useEffect, useState } from "react";
 import { getPolicyById, postnewPolicy } from "@/api/mainAPI";
 
+//Auth Imports
+import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
+
 const PolicyFormPage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const checkAuthToken = async () => {
+      const session = await getSession();
+      if (!session) {
+        router.push("/");
+      }
+    };
+    checkAuthToken();
+  }, [router]);
+
   const [policyNumber, setPolicyNumber] = useState("");
   const [fetchedData, setFetchedData] = useState("");
   const [updatedData, setUpdatedData] = useState("");
@@ -25,7 +40,6 @@ const PolicyFormPage = () => {
 
   const postnewPolicyView = async ({ data }: any) => {
     const response: any = await postnewPolicy({ data });
-    console.log("Respo", response);
   };
 
   useEffect(() => {
