@@ -12,8 +12,6 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any, req: any) {
-        console.log("This function runs", credentials, users);
-        
         if (!credentials || !credentials?.username || !credentials?.password) {
           return null;
         }

@@ -1,11 +1,8 @@
-import { getServerSession } from "next-auth";
-import PolicyFormPage from "./policyForm/page";
-import LoginComponent from "@/Components/LoginComponent/LoginComponent";
-
-export default async function Home() {
+import LoginPage from "./loginPage/page";
+export default function Home() {
   return (
     <main>
-      <LoginComponent />
+      <LoginPage />
     </main>
   );
 }
